@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+2#!/usr/bin/env python
 # _*_ coding:utf-8 _*_
 
 import logging
 from xmind2testcase.metadata import TestSuite, TestCase, TestStep
 
-config = {'sep': ' ',
+config = {'sep': '>',   # 修改默认分隔符为 >
           'valid_sep': '&>+/-',
           'precondition_sep': '\n----\n',
           'summary_sep': '\n----\n',
@@ -68,7 +68,7 @@ def sheet_to_suite(root_topic):
         config['sep'] = separator  # set the separator for the testcase's title
         root_title = root_title[:-1]
     else:
-        config['sep'] = ' '
+        config['sep'] = '>' # 修改默认分隔符为 >
 
     suite.name = root_title
     suite.details = root_topic['note']
@@ -189,10 +189,14 @@ def gen_testcase_title(topics):
     titles = filter_empty_or_ignore_element(titles)
 
     # when separator is not blank, will add space around separator, e.g. '/' will be changed to ' / '
+    #下面模块和功能是用"空格"分割，如用"/"分隔，则替换为：separator = '/'
+    #separator = '/'
     separator = config['sep']
     if separator != ' ':
+        # 分隔符带空格
         separator = ' {} '.format(separator)
-
+        # 分隔符不带空格
+        # separator = f'{separator}'
     return separator.join(titles)
 
 
