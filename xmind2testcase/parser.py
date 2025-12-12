@@ -4,7 +4,7 @@
 import logging
 from xmind2testcase.metadata import TestSuite, TestCase, TestStep
 
-config = {'sep': ' ',
+config = {'sep': '>',
           'valid_sep': '&>+/-',
           'precondition_sep': '\n----\n',
           'summary_sep': '\n----\n',
